@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Izrada Web Sajtova | Grafički Dizajn | Marketing - Petar Dizajn</title>
+
+<meta name="description" content="Izrada modernih web sajtova, grafički dizajn, vođenje društvenih mreža i marketing. Sajtovi koji donose klijente. Pozovi odmah.">
+<meta name="keywords" content="izrada web sajtova, grafički dizajn, marketing, vođenje društvenih mreža, web dizajn Subotica">
+<meta name="author" content="Petar Dizajn">
+
+<link rel="canonical" href="https://tvoj-sajt.rs">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Izrada Web Sajtova - Petar Dizajn">
+<meta property="og:description" content="Web sajtovi, dizajn i marketing koji donose klijente.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://tvoj-sajt.rs/preview.jpg">
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Petar Dizajn",
+  "telephone": "+381643131636",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Subotica",
+    "addressCountry": "RS"
+  },
+  "url": "https://tvoj-sajt.rs"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+  .about-wrapper{
+  display:flex;
+  align-items:center;
+  gap:40px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.about-text{
+  max-width:600px;
+  text-align:left;
+}
+
+.about-text h2{
+  text-align:left;
+  margin-bottom:15px;
+}
+
+.about-text p{
+  text-align:left;
+  color:#ccc;
+  line-height:1.6;
+}
+
+.about-tags{
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.about-tags span{
+  background:rgba(56,189,248,0.1);
+  border:1px solid rgba(56,189,248,0.3);
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  color:#38bdf8;
+}
+
+/* slika */
+.profile-img{
+  width:200px;
+  height:200px;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid #38bdf8;
+  box-shadow:0 0 30px rgba(56,189,248,0.25);
+  transition:0.3s;
+}
+
+.profile-img:hover{
+  transform:scale(1.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',sans-serif;background:radial-gradient(circle at top,#111,#050505);color:#fff}
+
+.container{max-width:1100px;margin:auto;padding:20px}
+
+header{position:sticky;top:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);border-bottom:1px solid #222;z-index:10}
+.nav{display:flex;justify-content:space-between;align-items:center}
+
+.logo{font-weight:800}
+.nav-links{display:flex;align-items:center}
+.nav-links a{color:#fff;text-decoration:none;margin-left:20px;font-size:14px}
+.nav-links a:not(.btn){
+  position:relative;
+  transition:0.3s;
+}
+
+.nav-links a:not(.btn):hover{
+  color:#38bdf8;
+}
+
+.nav-links a:not(.btn)::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#38bdf8;
+  transition:0.3s;
+}
+
+.nav-links a:not(.btn):hover::after{
+  width:100%;
+}
+.btn{padding:12px 24px;background:linear-gradient(135deg,#0ea5e9,#38bdf8);color:#fff;text-decoration:none;border-radius:10px;transition:.3s}
+.btn:hover{opacity:.85}
+
+/* Burger */
+.burger{display:none;flex-direction:column;cursor:pointer}
+.burger span{height:3px;width:25px;background:#fff;margin:4px 0;transition:.4s}
+.burger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.active span:nth-child(2){opacity:0}
+.burger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+
+/* Mobile menu */
+.mobile-menu{
+position:fixed;top:0;right:-100%;
+width:70%;height:100%;
+background:#0d0d0d;
+display:flex;flex-direction:column;
+padding:40px;transition:.4s;z-index:20
+}
+.mobile-menu.active{right:0}
+.mobile-menu a{margin:15px 0;color:#fff;text-decoration:none;font-size:18px}
+
+/* Overlay */
+.overlay{
+position:fixed;top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.6);
+opacity:0;pointer-events:none;transition:.3s
+}
+.overlay.active{opacity:1;pointer-events:auto}
+
+/* Hero */
+.hero{text-align:center;padding:120px 20px 80px}
+.hero h1{font-size:56px;font-weight:800}
+.hero p{color:#bbb;font-size:18px}
+.hero-info{
+  margin-top:20px;
+  color:#888;
+  font-size:14px;
+  line-height:1.8;
+}
+
+/* Sections */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
+h1, h2, h3 {
+  text-align: center;
+}
+p {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 15px auto;
+}
+h2{font-size:32px;margin-bottom:20px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+
+.card{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.05);
+padding:25px;border-radius:16px;
+transition:.3s
+}
+.card {
+  text-align: center;
+}
+.card:hover{transform:translateY(-6px);border-color:#0ea5e9}
+.card p{
+  font-style:italic;
+  color:#ddd;
+}
+
+.card span{
+  display:block;
+  margin-top:8px;
+  color:#ffd700;
+  font-size:14px;
+}
+
+.highlight{color:#38bdf8}
+
+/* Animacija */
+.fade-in{
+opacity:0;
+transform:translateY(30px);
+transition:0.8s ease;
+}
+.fade-in.show{
+opacity:1;
+transform:translateY(0);
+}
+.profile-img{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:50%;
+  display:block;
+  margin:0 auto 20px auto;
+  border:3px solid #38bdf8;
+  box-shadow:0 0 25px rgba(56,189,248,0.3);
+}
+.profile-img{
+  transition:0.3s;
+}
+.profile-img:hover{
+  transform:scale(1.05);
+}
+.contact-form{
+  max-width:600px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.pricing-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px;
+  padding:30px 20px;
+  text-align:center;
+  transition:0.3s;
+  position:relative;
+}
+
+.pricing-card:hover{
+  transform:translateY(-8px);
+  border-color:#38bdf8;
+}
+
+.pricing-card.popular{
+  border:2px solid #38bdf8;
+  transform:scale(1.05);
+}
+.contact-form select{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:#111;
+  color:#fff;
+  outline:none;
+  transition:0.3s;
+}
+
+.contact-form select:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 10px rgba(56,189,248,0.2);
+}
+.badge{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  background:rgba(255,255,255,0.1);
+  margin-bottom:10px;
+}
+
+.badge.highlight{
+  background:#38bdf8;
+  color:#000;
+  font-weight:bold;
+}
+
+.pricing-card ul{
+  list-style:none;
+  padding:0;
+  margin:20px 0;
+}
+
+.pricing-card ul li{
+  margin:10px 0;
+  color:#ccc;
+}
+
+.old-price{
+  text-decoration:line-through;
+  color:#777;
+  margin-top:10px;
+}
+
+.price{
+  font-size:26px;
+  font-weight:800;
+  color:#38bdf8;
+  margin:10px 0 20px;
+}
+
+.pricing-note{
+  margin-top:30px;
+  padding:15px;
+  border-radius:12px;
+  background:rgba(56,189,248,0.1);
+  border:1px solid rgba(56,189,248,0.2);
+  color:#38bdf8;
+}
+.contact-form input,
+.contact-form textarea{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:#111;
+  color:#fff;
+  outline:none;
+  transition:0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 10px rgba(56,189,248,0.2);
+}
+
+.contact-form button{
+  margin-top:10px;
+  cursor:pointer;
+}
+/* CTA */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(56, 189, 248, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+  }
+}
+
+.cta .btn{
+  animation: pulse 2s infinite;
+}
+.cta{text-align:center;padding:100px 20px}
+.cta{
+  background:radial-gradient(circle at center, rgba(56,189,248,0.08), transparent 60%);
+  border-top:1px solid rgba(56,189,248,0.1);
+  border-bottom:1px solid rgba(56,189,248,0.1);
+}
+/* Footer */
+.footer{text-align:center;padding:40px;color:#777}
+
+/* WhatsApp */
+.whatsapp{
+position:fixed;
+bottom:20px;right:20px;
+background:#25D366;
+padding:15px 18px;
+border-radius:50px;
+color:#fff;
+text-decoration:none;
+font-weight:bold
+}
+
+form input,form textarea{
+width:100%;padding:12px;margin-bottom:10px;
+border-radius:8px;border:none;
+background:#111;color:#fff
+}
+
+/* Responsive */
+@media(max-width:768px){
+.nav-links{display:none}
+.burger{display:flex}
+.hero h1{font-size:36px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Petar Dizajn</div>
+
+    <div class="nav-links">
+      <a href="#pocetna">Početna</a>
+      <a href="#omeni">O meni</a>
+      <a href="#usluge">Usluge</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#cta">Kontakt</a>
+      <a href="tel:+381643131636" class="btn">Pozovi</a>
+    </div>
+
+    <div class="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#pocetna">Početna</a>
+  <a href="#omeni">O meni</a>
+  <a href="#usluge">Usluge</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="tel:+381643131636" class="btn">Pozovi</a>
+</div>
+
+<!-- HERO -->
+<div id="pocetna" class="hero container">
+  <h1>Izrada web sajtova koji <span class="highlight">donose klijente</span></h1>
+  <p>Grafički dizajn, marketing i vođenje društvenih mreža za biznise koji žele rast.</p>
+  <a href="tel:+381643131636" class="btn" style="margin-top:25px; display:inline-block;">
+    Pozovi me
+  </a>
+  <p style="margin-top:15px;color:#888;">
+    ✔ Besplatna konsultacija<br>
+    ✔ Odgovor u roku od 5 minuta
+  </p>
+</div>
+
+<!-- O MENI -->
+<div id="omeni" class="section container fade-in">
+
+  <div class="about-wrapper">
+
+    <img src="tvoja-slika.jpg" alt="Petar Dizajn" class="profile-img">
+
+    <div class="about-text">
+      <h2>O meni</h2>
+
+      <p>
+        Zovem se Petar i bavim se izradom web sajtova, grafičkim dizajnom i digitalnim marketingom.
+        Pomažem biznisima da izgledaju profesionalno i da dobiju više klijenata putem interneta.
+      </p>
+
+      <p>
+        Radim moderne web sajtove, landing stranice koje prodaju, vizuelni identitet,
+        kao i vođenje društvenih mreža (Instagram i Facebook marketing).
+      </p>
+
+      <p>
+        Fokus mi je rezultat — više poziva, više upita i veća prodaja za tvoj biznis.
+      </p>
+
+      <div class="about-tags">
+        <span>Web sajtovi</span>
+        <span>Grafički dizajn</span>
+        <span>Marketing</span>
+        <span>SEO</span>
+        <span>Social Media</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div style="margin-top:30px; text-align:center;">
+  
+  <h3 style="color:#38bdf8; margin-bottom:10px;">
+    ✔ Moje ocene i reputacija
+  </h3>
+
+  <p style="color:#ccc;">
+    Moje ocene na KupujemProdajem možeš pogledati ovde:
+  </p>
+
+  <a href="https://www.kupujemprodajem.com/petar-s/ocene/2134791/1?userType=all&rate=positive"
+     target="_blank"
+     style="
+       display:inline-block;
+       margin-top:10px;
+       padding:12px 18px;
+       border:1px solid #38bdf8;
+       border-radius:10px;
+       color:#38bdf8;
+       text-decoration:none;
+       transition:0.3s;
+     "
+     onmouseover="this.style.background='#38bdf8';this.style.color='#000'"
+     onmouseout="this.style.background='transparent';this.style.color='#38bdf8'">
+    Pogledaj KupujemProdajem ocene
+  </a>
+
+</div>
+<!-- USLUGE -->
+<div id="usluge" class="section container fade-in">
+  <h2>Usluge</h2>
+  <div class="grid">
+    <div class="card"><h3>Web sajtovi</h3><p>Moderni i brzi sajtovi</p></div>
+    <div class="card"><h3>Landing stranice</h3><p>Stranice koje prodaju</p></div>
+    <div class="card"><h3>Grafički Dizajn</h3><p>Vizuelni identitet</p></div>
+    <div class="card"><h3>Marketing</h3><p>Instagram i Facebook reklame</p></div>
+    <div class="card"><h3>Vođenje društvenih mreža</h3><p>Objave i rast profila</p></div>
+  </div>
+</div>
+<div class="section container fade-in" id="paketi">
+
+  <h2 style="margin-bottom:10px;">AKCIJA!</h2>
+  <h2 style="font-size:38px;">Websajt + Društvene Mreže</h2>
+  <p>Sve što ti treba da izgledaš profesionalno i privučeš više klijenata.</p>
+
+  <div class="pricing-grid">
+
+    <!-- OSNOVNI -->
+    <div class="pricing-card">
+      <span class="badge">OSNOVNI</span>
+      <h3>Savršen početak</h3>
+
+      <ul>
+        <li>✔ Websajt (1 – 5 stranica)</li>
+        <li>✔ Osnovni dizajn + mobilna verzija</li>
+        <li>✔ 8 – 12 objava mesečno</li>
+      </ul>
+
+      <p class="old-price">300€ – 500€</p>
+      <p class="price">199€ – 299€</p>
+
+      <a href="#kontakt" class="btn" onclick="selectPackage('OSNOVNI')">Kreni odmah</a>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="pricing-card popular">
+      <span class="badge highlight">NAJPOPULARNIJE</span>
+      <h3>Najbolji izbor</h3>
+
+      <ul>
+        <li>✔ Websajt (do 10 stranica)</li>
+        <li>✔ SEO osnove</li>
+        <li>✔ LOGO DIZAJN GRATIS</li>
+        <li>✔ 12 – 20 objava mesečno</li>
+        <li>✔ Story + osnovni marketing</li>
+      </ul>
+
+      <p class="old-price">600€ – 900€</p>
+      <p class="price">399€ – 599€</p>
+
+      <a href="#kontakt" class="btn" onclick="selectPackage('STANDARD')">Kreni odmah</a>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="pricing-card">
+      <span class="badge">PREMIUM</span>
+      <h3>Za one koji žele više</h3>
+
+      <ul>
+        <li>✔ Profesionalni websajt (custom dizajn)</li>
+        <li>✔ SEO + optimizacija brzine</li>
+        <li>✔ 20+ objava mesečno</li>
+        <li>✔ Reklame Facebook / Instagram</li>
+      </ul>
+
+      <p class="old-price">1000€+</p>
+      <p class="price">699€ – 899€</p>
+
+      <a href="#kontakt" class="btn" onclick="selectPackage('PREMIUM')">Kreni odmah</a>
+    </div>
+
+  </div>
+
+  <div class="pricing-note">
+    ⏰ Akcija važi do kraja meseca ili za prvih 5 klijenata!
+  </div>
+
+</div>
+<!-- PORTFOLIO -->
+<div id="portfolio" class="section container fade-in">
+  <h2>Portfolio</h2>
+  <div class="grid">
+    <div class="card">Sajt za auto plac</div>
+    <div class="card">Landing za majstora</div>
+    <div class="card">Instagram dizajn</div>
+  </div>
+</div>
+<div class="section container fade-in">
+  <h2>Utisci klijenata</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <p>"Saradnja na najvišem nivou. Realizacija laka i brza. Svaka preporuka."</p>
+      <h4 style="color:#38bdf8;margin-top:10px;">– Mile S</h4>
+      <span>⭐⭐⭐⭐⭐</span>
+    </div>
+
+    <div class="card">
+      <p>"Brzo i kvalitetno logo odrađen, cena pristupačna."</p>
+      <h4 style="color:#38bdf8;margin-top:10px;">– Limarija Bravarija</h4>
+      <span>⭐⭐⭐⭐⭐</span>
+    </div>
+
+    <div class="card">
+      <p>"Ekstra rad, dogovor ispoštovan u najkraćem roku."</p>
+      <h4 style="color:#38bdf8;margin-top:10px;">– Mihalj S</h4>
+      <span>⭐⭐⭐⭐⭐</span>
+    </div>
+
+    <div class="card">
+      <p>"Sve preporuke za Petar Dizajn. Sve što smo se dogovorili ispoštovao, dizajn vrhunski."</p>
+      <h4 style="color:#38bdf8;margin-top:10px;">– Džemal S</h4>
+      <span>⭐⭐⭐⭐⭐</span>
+    </div>
+
+  </div>
+</div>
+
+<div id="kontakt" class="section container fade-in">
+
+
+  <form action="https://formsubmit.co/petarsamcevic.design@gmail.com" method="POST" class="contact-form">
+    <input type="hidden" name="paket" id="selectedPackage">
+    <!-- disable captcha -->
+    <input type="hidden" name="_captcha" value="false">
+
+    <!-- redirect nakon slanja -->
+    <input type="hidden" name="_next" value="https://tvoj-sajt.rs/hvala.html">
+
+    <input type="text" name="ime" placeholder="Tvoje ime" required>
+
+    <input type="email" name="email" placeholder="Tvoj email" required>
+
+    <input type="text" name="telefon" placeholder="Telefon (opciono)">
+
+    <textarea name="poruka" placeholder="Opiši šta ti treba..." rows="5" required></textarea>
+
+    <button type="submit" class="btn" id="sendBtn">Pošalji poruku</button>
+
+  </form>
+
+</div>
+<!-- CTA -->
+<div id="cta" class="cta">
+  <h2>Spreman za više klijenata?</h2>
+  <p>Javi se i napravićemo sajt koji donosi pozive i klijente za tvoj biznis.</p>
+  <a href="tel:+381643131636" class="btn" style="margin-top:20px; display:inline-block;">
+    Pozovi odmah
+  </a>
+</div>
+<div class="footer">
+  <p>Petar Dizajn © 2026</p>
+</div>
+
+<a class="whatsapp" href="https://wa.me/381643131636">WhatsApp</a>
+
+<script>
+function toggleMenu(){
+  document.querySelector('.burger').classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('active');
+  document.getElementById('overlay').classList.toggle('active');
+}
+
+const faders=document.querySelectorAll('.fade-in');
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(!entry.isIntersecting)return;
+entry.target.classList.add('show');
+});
+});
+
+faders.forEach(el=>observer.observe(el));
+document.querySelector(".contact-form")?.addEventListener("submit", function () {
+  
+  const btn = document.getElementById("sendBtn");
+
+  btn.innerText = "Poslato ✔";
+  btn.style.background = "#22c55e";
+  btn.style.boxShadow = "0 0 15px rgba(34,197,94,0.4)";
+
+  // opcionalno: disable da se ne klikne opet
+  btn.disabled = true;
+
+});
+function selectPackage(paket){
+  const textarea = document.querySelector('textarea[name="poruka"]');
+  if(textarea){
+    textarea.value = "Zainteresovan sam za paket: " + paket;
+  }
+}
+function selectPackage(paket){
+
+// selektuj dropdown
+const select = document.querySelector('select[name="paket"]');
+if(select){
+  select.value = paket;
+}
+
+// upiši poruku
+const textarea = document.querySelector('textarea[name="poruka"]');
+if(textarea){
+  textarea.value = "Zainteresovan sam za paket: " + paket;
+}
+
+// fokus na ime
+setTimeout(() => {
+  document.querySelector('input[name="ime"]')?.focus();
+}, 400);
+}
+</script>
+
+</body>
+</html>

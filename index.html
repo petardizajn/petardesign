@@ -339,47 +339,10 @@ transform:translateY(0);
   outline:none;
   transition:0.3s;
 }
-.stats{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  margin-top:40px;
-  flex-wrap:wrap;
-}
-
 .counter{
-  font-size:56px;
+  font-size:48px;
   font-weight:800;
   color:#38bdf8;
-  letter-spacing:1px;
-
-  /* glow */
-  text-shadow:
-    0 0 5px rgba(56,189,248,0.6),
-    0 0 15px rgba(56,189,248,0.4),
-    0 0 30px rgba(56,189,248,0.2);
-
-  transition:0.3s;
-}
-
-/* dok broji */
-.counter.active{
-  animation: glowPulse 1.5s infinite alternate;
-}
-
-@keyframes glowPulse{
-  from{
-    text-shadow:
-      0 0 5px rgba(56,189,248,0.6),
-      0 0 15px rgba(56,189,248,0.4),
-      0 0 25px rgba(56,189,248,0.2);
-  }
-  to{
-    text-shadow:
-      0 0 10px rgba(56,189,248,0.9),
-      0 0 25px rgba(56,189,248,0.7),
-      0 0 50px rgba(56,189,248,0.5);
-  }
 }
 .contact-form input:focus,
 .contact-form textarea:focus{
@@ -744,85 +707,53 @@ function toggleMenu(){
   document.getElementById('overlay').classList.toggle('active');
 }
 
-/* ===== FADE ANIMACIJA ===== */
-const faders = document.querySelectorAll('.fade-in');
+const faders=document.querySelectorAll('.fade-in');
 
-const fadeObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('show');
-  });
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(!entry.isIntersecting)return;
+entry.target.classList.add('show');
+});
 });
 
-faders.forEach(el => fadeObserver.observe(el));
-
-/* ===== FORM SUBMIT UI FEEDBACK ===== */
+faders.forEach(el=>observer.observe(el));
 document.querySelector(".contact-form")?.addEventListener("submit", function () {
+  
   const btn = document.getElementById("sendBtn");
 
   btn.innerText = "Poslato ✔";
   btn.style.background = "#22c55e";
   btn.style.boxShadow = "0 0 15px rgba(34,197,94,0.4)";
+
+  // opcionalno: disable da se ne klikne opet
   btn.disabled = true;
+
 });
-
-/* ===== PAKET SELEKCIJA (ISPRAVLJENO) ===== */
 function selectPackage(paket){
-  // upis u hidden input
-  const hidden = document.getElementById("selectedPackage");
-  if (hidden) hidden.value = paket;
-
-  // automatska poruka
   const textarea = document.querySelector('textarea[name="poruka"]');
-  if (textarea) {
+  if(textarea){
     textarea.value = "Zainteresovan sam za paket: " + paket;
   }
+}
+function selectPackage(paket){
 
-  // fokus na ime
-  setTimeout(() => {
-    document.querySelector('input[name="ime"]')?.focus();
-  }, 300);
+// selektuj dropdown
+const select = document.querySelector('select[name="paket"]');
+if(select){
+  select.value = paket;
 }
 
-/* ===== COUNTER ANIMACIJA ===== */
-const counters = document.querySelectorAll('.counter');
+// upiši poruku
+const textarea = document.querySelector('textarea[name="poruka"]');
+if(textarea){
+  textarea.value = "Zainteresovan sam za paket: " + paket;
+}
 
-const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
-
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-
-    const el = entry.target;
-    const target = +el.getAttribute('data-target');
-    const duration = 2000;
-
-    let start = null;
-    el.classList.add("active");
-
-    function animate(timestamp){
-      if (!start) start = timestamp;
-
-      const progress = timestamp - start;
-      const percent = Math.min(progress / duration, 1);
-      const eased = easeOutCubic(percent);
-
-      el.innerText = Math.floor(eased * target);
-
-      if (progress < duration) {
-        requestAnimationFrame(animate);
-      } else {
-        el.innerText = target + "+";
-        el.classList.remove("active");
-      }
-    }
-
-    requestAnimationFrame(animate);
-    counterObserver.unobserve(el);
-  });
-});
-
-counters.forEach(counter => counterObserver.observe(counter));
+// fokus na ime
+setTimeout(() => {
+  document.querySelector('input[name="ime"]')?.focus();
+}, 400);
+}
 </script>
 
 </body>

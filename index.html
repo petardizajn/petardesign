@@ -744,82 +744,72 @@ function toggleMenu(){
   document.getElementById('overlay').classList.toggle('active');
 }
 
-const faders=document.querySelectorAll('.fade-in');
+/* ===== FADE ANIMACIJA ===== */
+const faders = document.querySelectorAll('.fade-in');
 
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(!entry.isIntersecting)return;
-entry.target.classList.add('show');
-});
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('show');
+  });
 });
 
-faders.forEach(el=>observer.observe(el));
+faders.forEach(el => fadeObserver.observe(el));
+
+/* ===== FORM SUBMIT UI FEEDBACK ===== */
 document.querySelector(".contact-form")?.addEventListener("submit", function () {
-  
   const btn = document.getElementById("sendBtn");
 
   btn.innerText = "Poslato ✔";
   btn.style.background = "#22c55e";
   btn.style.boxShadow = "0 0 15px rgba(34,197,94,0.4)";
-
-  // opcionalno: disable da se ne klikne opet
   btn.disabled = true;
-
 });
+
+/* ===== PAKET SELEKCIJA (ISPRAVLJENO) ===== */
 function selectPackage(paket){
+  // upis u hidden input
+  const hidden = document.getElementById("selectedPackage");
+  if (hidden) hidden.value = paket;
+
+  // automatska poruka
   const textarea = document.querySelector('textarea[name="poruka"]');
-  if(textarea){
+  if (textarea) {
     textarea.value = "Zainteresovan sam za paket: " + paket;
   }
-}
-function selectPackage(paket){
 
-// selektuj dropdown
-const select = document.querySelector('select[name="paket"]');
-if(select){
-  select.value = paket;
+  // fokus na ime
+  setTimeout(() => {
+    document.querySelector('input[name="ime"]')?.focus();
+  }, 300);
 }
 
-// upiši poruku
-const textarea = document.querySelector('textarea[name="poruka"]');
-if(textarea){
-  textarea.value = "Zainteresovan sam za paket: " + paket;
-}
-
-// fokus na ime
-setTimeout(() => {
-  document.querySelector('input[name="ime"]')?.focus();
-}, 400);
-}
+/* ===== COUNTER ANIMACIJA ===== */
 const counters = document.querySelectorAll('.counter');
 
-const easeOutCubic = t => 1 - Math.pow(1 - t, 3); // smooth easing
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
 
-const observer = new IntersectionObserver(entries => {
+const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-
-    if(!entry.isIntersecting) return;
+    if (!entry.isIntersecting) return;
 
     const el = entry.target;
     const target = +el.getAttribute('data-target');
-    const duration = 2000; // trajanje (ms)
+    const duration = 2000;
 
     let start = null;
-
     el.classList.add("active");
 
     function animate(timestamp){
-      if(!start) start = timestamp;
+      if (!start) start = timestamp;
 
       const progress = timestamp - start;
       const percent = Math.min(progress / duration, 1);
-
       const eased = easeOutCubic(percent);
-      const value = Math.floor(eased * target);
 
-      el.innerText = value;
+      el.innerText = Math.floor(eased * target);
 
-      if(progress < duration){
+      if (progress < duration) {
         requestAnimationFrame(animate);
       } else {
         el.innerText = target + "+";
@@ -828,12 +818,11 @@ const observer = new IntersectionObserver(entries => {
     }
 
     requestAnimationFrame(animate);
-    observer.unobserve(el);
-
+    counterObserver.unobserve(el);
   });
 });
 
-counters.forEach(counter => observer.observe(counter));
+counters.forEach(counter => counterObserver.observe(counter));
 </script>
 
 </body>

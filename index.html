@@ -350,6 +350,11 @@ transform:translateY(0);
   margin-top:10px;
   cursor:pointer;
 }
+.counter{
+  font-size:48px;
+  font-weight:800;
+  color:#38bdf8;
+}
 /* CTA */
 @keyframes pulse {
   0% {
@@ -453,7 +458,30 @@ background:#111;color:#fff
   <div class="about-wrapper">
 
     <img src="tvoja-slika.jpg" alt="Petar Dizajn" class="profile-img">
+    <div class="section container fade-in">
 
+        <h2>Rezultati</h2>
+      
+        <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:30px;">
+      
+          <div>
+            <h3 class="counter" data-target="50">0</h3>
+            <p>Zadovoljnih klijenata</p>
+          </div>
+      
+          <div>
+            <h3 class="counter" data-target="120">0</h3>
+            <p>Urađenih projekata</p>
+          </div>
+      
+          <div>
+            <h3 class="counter" data-target="5">0</h3>
+            <p>Godina iskustva</p>
+          </div>
+      
+        </div>
+      
+      </div>
     <div class="about-text">
       <h2>O meni</h2>
 
@@ -725,6 +753,39 @@ setTimeout(() => {
   document.querySelector('input[name="ime"]')?.focus();
 }, 400);
 }
+const counters = document.querySelectorAll('.counter');
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+
+    if(!entry.isIntersecting) return;
+
+    const el = entry.target;
+    const target = +el.getAttribute('data-target');
+    let count = 0;
+
+    const speed = target / 50; // brzina (manje = sporije)
+
+    const updateCount = () => {
+      count += speed;
+
+      if(count < target){
+        el.innerText = Math.floor(count);
+        requestAnimationFrame(updateCount);
+      } else {
+        el.innerText = target + "+";
+      }
+    };
+
+    updateCount();
+    counterObserver.unobserve(el);
+
+  });
+});
+
+counters.forEach(counter => {
+  counterObserver.observe(counter);
+});
 </script>
 
 </body>
